@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QPushButton
+from sidebar.sidebar import Sidebar
 
 
 class Window(QMainWindow):
@@ -22,3 +23,14 @@ class Window(QMainWindow):
         
         with open("window/window.css", "r") as file:
             self.setStyleSheet(file.read())
+            
+        self.button = QPushButton("click")
+            
+        sidebar = Sidebar()
+        layout = QHBoxLayout()
+        layout.addWidget(sidebar)
+        layout.addWidget(self.button)
+        
+        self.setCentralWidget(QWidget())
+        self.centralWidget().setLayout(layout)
+        
