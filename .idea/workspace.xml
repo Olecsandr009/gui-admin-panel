@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3297610d-374c-44ce-9cd6-7222c4e79c7a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/result_list/result_list.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/result_list/result_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/result_list/result_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/test_tab/test_tab.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/stack/stack.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/window/window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.py" beforeDir="false" afterPath="$PROJECT_DIR$/sidebar/sidebar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/window/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/window/window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_list/result_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/result_list/result_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidebar/sidebar.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sidebar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/window/window.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/window/window.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +47,22 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Python/GUIJsonAdmin&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python\GUIJsonAdmin\utils" />
+      <recent name="D:\Python\GUIJsonAdmin\components" />
+      <recent name="D:\Python\GUIJsonAdmin\pages" />
+      <recent name="D:\Python\GUIJsonAdmin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GUIJsonAdmin" />
       <option name="ENV_FILES" value="" />
@@ -70,9 +85,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="GUIJsonAdmin" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -98,8 +136,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sidebar/sidebar.py</url>
-          <line>28</line>
+          <url>file://$PROJECT_DIR$/components/sidebar/sidebar.py</url>
+          <line>27</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

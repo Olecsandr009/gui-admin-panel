@@ -1,0 +1,32 @@
+* {
+    border: none;
+    /* background-color: transparent; */
+    background: none;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+QMainWindow {
+    background-color: #0B0A0B;
+}
+QWidget#sidebar {
+    border-right: 1px solid #191919;
+}
+QWidget#titleBar {
+    border-bottom: 1px solid #191919;
+}
+/* QWidget#content {background-color: green} */
+QPushButton#ItemBtn {
+    text-align: left;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+QPushButton#ItemBtn:hover {
+    background-color: #191919;
+}
+QLabel#logoText {
+    color: red;
+}
+QFrame#footer {
+    border-top: 1px solid #191919;
+}
