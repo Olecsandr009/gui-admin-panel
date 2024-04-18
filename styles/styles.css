@@ -10,12 +10,14 @@ QMainWindow {
     background-color: #0B0A0B;
 }
 QWidget#sidebar {
-    border-right: 1px solid #191919;
+    border-right: 1px solid #282828;
 }
 QWidget#titleBar {
-    border-bottom: 1px solid #191919;
+    /* border-bottom: 1px solid #282828; */
 }
-/* QWidget#content {background-color: green} */
+QWidget#Title {
+    /* background-color: blue; */
+}
 QPushButton#ItemBtn {
     text-align: left;
     padding: 8px 10px;
@@ -24,9 +26,37 @@ QPushButton#ItemBtn {
 QPushButton#ItemBtn:hover {
     background-color: #191919;
 }
+QPushButton#buttonBorder {
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid red;
+    color: white;
+}
+QPushButton#buttonBorder:hover {
+    background-color: red;
+}
 QLabel#logoText {
     color: red;
 }
+QLabel#historyText {
+    text-align: left;
+}
 QFrame#footer {
-    border-top: 1px solid #191919;
+    border-top: 1px solid #282828;
+    padding-top: 5px;
+}
+QFrame#historyItem {
+    border-radius: 12px;
+}
+QFrame#historyItem:hover {
+    background-color: #191919;
+}
+QFrame#historyItemTitle {
+    border-bottom: 1px solid #282828
+}
+QFrame#item,
+QPushButton#item,
+QLabel#item {
+    background-color: red;
 }

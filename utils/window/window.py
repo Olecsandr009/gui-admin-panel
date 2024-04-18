@@ -5,8 +5,10 @@ from PyQt6.QtCore import Qt
 from components.sidebar.sidebar import Sidebar
 from components.title_bar.title_bar import TitleBar
 from components.footer.footer import Footer
+
 from pages.result_list.result_list import ResultList
 from pages.test_tab.test_tab import TestTab
+from pages.history.history import History
 
 class Window(QMainWindow):
     def __init__(self):
@@ -18,15 +20,17 @@ class Window(QMainWindow):
         self.width = 1000
         self.height = 600
         
-        self.sidebar_item = [
+        self.sidebar_items = [
             "Всі товари",
             "Добавить новий",
             "Історія"
         ]
+        
+        self.files_list = []
 
-        self.setup_ui()
         self.apply_styles()
         self.setup_layout()
+        self.setup_ui()
         
     # Налаштування вигляду головного вікна
     def setup_ui(self):
@@ -50,7 +54,7 @@ class Window(QMainWindow):
         self.central_layout = QHBoxLayout(self.central_widget)
         self.central_layout.setContentsMargins(0, 0, 0, 0)
 
-        self.sidebar = Sidebar(parent=self.central_widget, stack=stackWidget)
+        self.sidebar = Sidebar(parent=self.central_widget, stack=stackWidget, list=self.sidebar_items)
         
         self.content = QWidget(parent=self.central_widget)
         self.content.setObjectName("content")
@@ -59,17 +63,21 @@ class Window(QMainWindow):
         title_bar = TitleBar(parent=self.content, main=self)
         title_layout = title_bar.setup_layout()
         
+        footer = Footer(parent=self.content)
+        footer_layout = footer.setup_layout()
+        
         result_list = ResultList(parent=self.content)
         result_layout = result_list.setup_layout()
         
         test_tab = TestTab(parent=self.content)
         test_layout = test_tab.setup_layout()
         
-        footer = Footer(parent=self.content)
-        footer_layout = footer.setup_layout()
+        history = History(parent=self.content)
+        history_layout = history.setup_layout()
         
         stackWidget.addWidget(result_layout)
         stackWidget.addWidget(test_layout)
+        stackWidget.addWidget(history_layout)
         
         self.content_layout.addWidget(title_layout)
         self.content_layout.addWidget(stackWidget)
