@@ -5,81 +5,51 @@ import os
 from datetime import datetime
 
 from pages.history.grid_layout.grid_layout import GridLayout
-from components.buttons.button_border import ButtonBorder
 from pages.history.title.title import Title
 
 
-class History():
-    def __init__(self, parent):
-        super().__init__()
+class History(QWidget):
+    def __init__(self, parent, stack):
+        super(History, self).__init__(parent)
         
-        self.parent = parent
         self.folder_path = "storage/json"
         self.files_list = self.get_files()
+        self.parent = parent
+        self.stack = stack
         
-    # Налаштування елементів
-    def setup_layout(self):
-        history = QWidget(parent=self.parent)
-        history_layout = QVBoxLayout(history)
+        history_layout = QVBoxLayout(self)
         
-        history_title = QWidget(parent=history)
-        history_title.setFixedHeight(100)
-        title_layout = QHBoxLayout(history_title)
-        title_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
-        
-        font = self.setup_font()
-        
-        title_text = QLabel("Історія", parent=history_title)
-        title_text.setFont(font)
-        
-        title_button_frame = QFrame(parent=history_title)
-        button_frame_layout = QHBoxLayout(title_button_frame)
-        
-        button_border = ButtonBorder(history_title, "Додати новий файл")
-        history_button = button_border.setup_layout()
-        button_frame_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
-        button_frame_layout.addWidget(history_button)
-        
-        title_text.setObjectName("historyTitle")
-        
-        title_text.setAlignment(Qt.AlignmentFlag.AlignLeft)
-
-        title = Title(parent=history_title)
-        
-        title_layout.addWidget(title)
-        title_layout.addWidget(title_text)
-        title_layout.addWidget(title_button_frame)
-        
-        grid_frame = QFrame(parent=self.parent)
+        grid_frame = QFrame(parent=self)
         frame_layout = QVBoxLayout(grid_frame)
         frame_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        grid_title = GridLayout(self.parent).show_item({
+        grid_title = GridLayout(self, {
             "file_id": "№",
             "file_name": "Ім'я:",
             "last_change": "Остання зміна:",
             "file_size": "Розмір:",
             "file_type": "Тип:"
-        }, title=True)
+        }, self.stack, title=True)
         grid_title.setObjectName("historyItemTitle")
         
         frame_layout.addWidget(grid_title)
         
         for index, file_data in enumerate(self.files_list):
-            grid_layout = GridLayout(self.parent).show_item({
+            grid_layout = GridLayout(self, {
                 "file_id": f"{index + 1}",
                 "file_type": "json",
                 **file_data
-            })
+            }, self.stack)
             
             grid_layout.setObjectName("historyItem")
             
             frame_layout.addWidget(grid_layout)
             
-        history_layout.addWidget(history_title)
+        history_layout.addWidget(Title(parent=self))
         history_layout.addWidget(grid_frame)
             
-        return history
+        self.setLayout(history_layout)
+        
     
     # Налаштування фону
     def setup_font(self):

@@ -1,39 +1,37 @@
-from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton
-from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QFrame, QGridLayout, QLabel, QPushButton, QStackedWidget
+from PyQt6.QtGui import QIcon, QMouseEvent
 from PyQt6.QtCore import Qt
 
-from components.json.json import Json
+from pages.result_list.result_list import ResultList
 
-
-class GridLayout():
-    def __init__(self, parent):
-        super().__init__()
+class GridLayout(QFrame):
+    def __init__(self, parent, item, stack: QStackedWidget, title=False):
+        super(GridLayout, self).__init__(parent)
+        self.stack = stack
+        self.item = item
         
-        self.parent = parent
-        
-    # Показати пункт
-    def show_item(self, item, title=False):
-        grid_frame = QFrame(parent=self.parent)
-        grid_layout = QGridLayout(grid_frame)
+        grid_layout = QGridLayout(self)
         grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        grid_id = QLabel(item["file_id"], parent=grid_frame)
+        grid_id = QLabel(self.item["file_id"], parent=self)
         grid_id.setObjectName("historyText")
-        grid_name = QLabel(item["file_name"], parent=grid_frame)
+        grid_name = QLabel(self.item["file_name"], parent=self)
         grid_name.setObjectName("historyText")
-        grid_date = QLabel(item["last_change"], parent=grid_frame)
+        grid_date = QLabel(self.item["last_change"], parent=self)
         grid_date.setObjectName("historyText")
-        grid_size = QLabel(item["file_size"], parent=grid_frame)
+        grid_size = QLabel(self.item["file_size"], parent=self)
         grid_size.setObjectName("historyText")
-        grid_type = QLabel(item["file_type"], parent=grid_frame)
+        grid_type = QLabel(self.item["file_type"], parent=self)
         grid_type.setObjectName("historyText")
         
-        grid_delete = QPushButton(parent=grid_frame)
+        grid_delete = QPushButton(parent=self)
         grid_delete.setFixedWidth(20)
         
         if not title:
             grid_icon = QIcon("media/icons/trash.png")
             grid_delete.setIcon(grid_icon)
+            
+            grid_delete.clicked.connect(self.onPressDelete)
         
         grid_layout.setColumnMinimumWidth(0, 20)
         grid_layout.setColumnStretch(1, 1)
@@ -54,8 +52,17 @@ class GridLayout():
         grid_layout.setSpacing(20)
         grid_layout.addWidget(grid_delete, 0, 5)
         
-        return grid_frame
-            
+        self.setLayout(grid_layout)
+        
+    def mousePressEvent(self, event: QMouseEvent | None) -> None:
+        if event.button() == Qt.MouseButton.LeftButton:
+            print("press mouse in self.item")
+            self.stack.setCurrentWidget(ResultList(parent=None, filename=self.item["file_name"]))
+        return super().mousePressEvent(event)
+    
+    def onPressDelete(self) -> None:
+        print("press")
+        
     # Отримання рядка сітки
     def get_row_widgets(self, grid_layout:QGridLayout, row: int):
         widgets = []

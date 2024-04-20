@@ -5,11 +5,12 @@ from PyQt6.QtGui import QFont
 from typing import List
 
 from components.sidebar.logo.logo import Logo
+from utils.stacked_nav.stacked_nav import StackedNav
 
-# , stack: QStackedWidget
-class Sidebar():
-    def __init__(self, parent, stack:QStackedWidget, list: List[str]):
-        super().__init__()
+
+class Sidebar(QWidget):
+    def __init__(self, parent, stack: QStackedWidget, list: List[str]):
+        super(Sidebar, self).__init__(parent)
 
         self.parent = parent
         self.stack = stack
@@ -18,27 +19,22 @@ class Sidebar():
         self.width = 250
         self.name = "sidebar"
 
-    # Налаштування елементів бокової панелі
-    def setup_layout(self):
-        sidebar = QWidget(parent=self.parent)
-        sidebar.setObjectName("sidebar")
-        sidebar_layout = QVBoxLayout(sidebar)
+        self.setObjectName("sidebar")
+        sidebar_layout = QVBoxLayout(self)
         sidebar_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        logo = Logo(parent=sidebar)
+        logo = Logo(parent=self)
         sidebar_logo = logo.setup_layout()
-        sidebar_nav = self.setup_nav(sidebar)
+        sidebar_nav = self.setup_nav(self)
         
         sidebar_layout.addWidget(sidebar_logo)
         sidebar_layout.addSpacing(20)
         sidebar_layout.addWidget(sidebar_nav)
         sidebar_layout.setContentsMargins(12, 12, 12, 12)
         
-        sidebar.setLayout(sidebar_layout)
+        self.setup_ui(self)
         
-        self.setup_ui(sidebar)
-        
-        return sidebar
+        self.setLayout(sidebar_layout)
     
     # Налаштування вигляду бокової панелі
     def setup_ui(self, parent): 

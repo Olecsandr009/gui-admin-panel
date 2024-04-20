@@ -1,21 +1,51 @@
-from PyQt6.QtGui import QPaintEvent
-from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel
+from PyQt6.QtGui import QPaintEvent, QPainter, QFont
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QStyleOption, QStyle, QFrame
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QPalette
+
+from components.buttons.button_border import ButtonBorder
 
 
 class Title(QWidget):
     def __init__(self, parent=None):
         super(Title, self).__init__(parent)
         
-        # self.setObjectName("Title")
-        self.title_layout = QHBoxLayout(self)
+        self.setFixedHeight(100)
         
-        self.title_frame = QLabel("test label", parent=self)
-        self.title_layout.addWidget(self.title_frame)
+        title_layout = QHBoxLayout()
+        title_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        self.setStyleSheet("Title {background-color: red; border: 2px solid blue}")
+        font = self.setup_font()
+        
+        title_text = QLabel("Історія", parent=parent)
+        title_text.setFont(font)
+        
+        title_button_frame = QFrame(parent=parent)
+        button_frame_layout = QHBoxLayout(title_button_frame)
+        
+        button_border = ButtonBorder(parent, "Додати новий файл")
+        history_button = button_border.setup_layout()
+        button_frame_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
+        button_frame_layout.addWidget(history_button)
+        
+        title_text.setObjectName("historyTitle")
+        
+        title_text.setAlignment(Qt.AlignmentFlag.AlignLeft)
+
+        title_layout.addWidget(title_text)
+        title_layout.addWidget(title_button_frame)
+        
+        self.setLayout(title_layout)
         
     def paintEvent(self, a0: QPaintEvent | None) -> None:
-        self.palette().setBackgroundRole(QPalette.ColorRole.Window)
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
         return super().paintEvent(a0)
+    
+    # Налаштування фону
+    def setup_font(self):
+        font = QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(32)
+        return font

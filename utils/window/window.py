@@ -10,15 +10,19 @@ from pages.result_list.result_list import ResultList
 from pages.test_tab.test_tab import TestTab
 from pages.history.history import History
 
+from utils.stacked_nav.stacked_nav import StackedNav
+
+
 class Window(QMainWindow):
     def __init__(self):
-        super().__init__()
+        super(Window, self).__init__()
         
         self.title = "GUI Admin panel"
         self.top = 100
         self.left = 200
         self.width = 1000
         self.height = 600
+        self.stack = QStackedWidget()
         
         self.sidebar_items = [
             "Всі товари",
@@ -29,33 +33,14 @@ class Window(QMainWindow):
         self.files_list = []
 
         self.apply_styles()
-        self.setup_layout()
         self.setup_ui()
-        
-    # Налаштування вигляду головного вікна
-    def setup_ui(self):
-        self.setWindowTitle(self.title)
-        self.setGeometry(self.left, self.top, self.width, self.height)
 
-    # Підключення стилів головного вікна
-    def apply_styles(self):
-        self.setObjectName('admin-window')
-        self.setProperty('class', 'admin-window')   
-
-        with open("styles/styles.css", "r") as file:
-            self.setStyleSheet(file.read())
-
-    # Налаштування елементів головного вікна
-    def setup_layout(self):
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
-        stackWidget = QStackedWidget()
         
         self.central_widget = QWidget(parent=self)
         self.central_layout = QHBoxLayout(self.central_widget)
         self.central_layout.setContentsMargins(0, 0, 0, 0)
 
-        self.sidebar = Sidebar(parent=self.central_widget, stack=stackWidget, list=self.sidebar_items)
-        
         self.content = QWidget(parent=self.central_widget)
         self.content.setObjectName("content")
         self.content_layout = QVBoxLayout(self.content)
@@ -67,23 +52,21 @@ class Window(QMainWindow):
         footer_layout = footer.setup_layout()
         
         result_list = ResultList(parent=self.content)
-        result_layout = result_list.setup_layout()
         
         test_tab = TestTab(parent=self.content)
-        test_layout = test_tab.setup_layout()
         
-        history = History(parent=self.content)
-        history_layout = history.setup_layout()
+        history = History(parent=self.content, stack=self.stack)
         
-        stackWidget.addWidget(result_layout)
-        stackWidget.addWidget(test_layout)
-        stackWidget.addWidget(history_layout)
+        self.stack.addWidget(result_list)
+        self.stack.addWidget(test_tab)
+        self.stack.addWidget(history)
         
         self.content_layout.addWidget(title_layout)
-        self.content_layout.addWidget(stackWidget)
+        self.content_layout.addWidget(self.stack)
         self.content_layout.addWidget(footer_layout)
         
-        self.central_layout.addWidget(self.sidebar.setup_layout())
+        self.sidebar = Sidebar(parent=self, list=self.sidebar_items, stack=self.stack)
+        self.central_layout.addWidget(self.sidebar)
         self.central_layout.addWidget(self.content)
         
         self.setCentralWidget(self.central_widget)
@@ -95,3 +78,16 @@ class Window(QMainWindow):
             self.showNormal()
         else:
             self.showMaximized()
+            
+    # Підключення стилів головного вікна
+    def apply_styles(self):
+        self.setObjectName('admin-window')
+        self.setProperty('class', 'admin-window')   
+
+        with open("styles/styles.css", "r") as file:
+            self.setStyleSheet(file.read())
+            
+    # Налаштування вигляду головного вікна
+    def setup_ui(self):
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.left, self.top, self.width, self.height)

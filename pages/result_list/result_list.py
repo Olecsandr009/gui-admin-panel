@@ -5,18 +5,13 @@ from PyQt6.QtGui import QFont
 from pages.result_list.grid_layout.grid_layout import GridLayout
 
 
-class ResultList():
-    def __init__(self, parent):
-        super().__init__()
+class ResultList(QWidget):
+    def __init__(self, parent = None, filename:str = None):
+        super(ResultList, self).__init__(parent)
 
-        self.parent = parent
-
-    # Настройка елементів
-    def setup_layout(self):
-        result_list = QWidget(parent=self.parent)
-        result_layout = QVBoxLayout(result_list)
+        result_layout = QVBoxLayout(self)
         
-        result_title = QWidget(parent=self.parent)
+        result_title = QWidget(self)
         result_title.setFixedHeight(100)
         title_layout = QHBoxLayout(result_title)
         title_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
@@ -28,13 +23,13 @@ class ResultList():
         
         title_layout.addWidget(title_text)
 
-        grid = GridLayout(parent=result_list)
+        grid = GridLayout(parent=self)
         grid_layout = grid.setup_layout()
         
         result_layout.addWidget(result_title)
         result_layout.addWidget(grid_layout)
 
-        return result_list
+        self.setLayout(result_layout)
     
     # Налаштування фону
     def setup_font(self):

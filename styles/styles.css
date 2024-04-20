@@ -16,7 +16,7 @@ QWidget#titleBar {
     /* border-bottom: 1px solid #282828; */
 }
 QWidget#Title {
-    /* background-color: blue; */
+    background-color: blue;
 }
 QPushButton#ItemBtn {
     text-align: left;
@@ -41,6 +41,9 @@ QLabel#logoText {
 }
 QLabel#historyText {
     text-align: left;
+}
+QLabel#historyTitle {
+    color: red;
 }
 QFrame#footer {
     border-top: 1px solid #282828;

@@ -1,17 +1,13 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton
 
 
-class TestTab():
+class TestTab(QWidget):
     def __init__(self, parent):
-        super().__init__()
+        super(TestTab, self).__init__(parent)
 
-        self.parent = parent
+        test_layout = QVBoxLayout(self)
 
-    def setup_layout(self):
-        test_tab = QWidget(parent=self.parent)
-        test_layout = QVBoxLayout(test_tab)
-
-        button1 = QPushButton('text', parent=test_tab)
+        button1 = QPushButton('text', parent=self)
         test_layout.addWidget(button1)
 
-        return test_tab
+        self.setLayout(test_layout)
