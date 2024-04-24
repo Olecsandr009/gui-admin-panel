@@ -22,7 +22,8 @@ class Window(QMainWindow):
         self.left = 200
         self.width = 1000
         self.height = 600
-        self.stack = QStackedWidget()
+        
+        self.stack_widget = QStackedWidget()
         
         self.sidebar_items = [
             "Всі товари",
@@ -39,41 +40,56 @@ class Window(QMainWindow):
 
         self.apply_styles()
         self.setup_ui()
+        
+        self.setupCentralWidget()
 
-        self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
+        self.sidebar_layout()
+        self.content_layout()
         
-        self.central_widget = QWidget(parent=self)
-        self.central_layout = QHBoxLayout(self.central_widget)
-        self.central_layout.setContentsMargins(0, 0, 0, 0)
-
-        self.content = QWidget(parent=self.central_widget)
-        self.content.setObjectName("content")
-        self.content_layout = QVBoxLayout(self.content)
+        self.setCentralWidget(self.window_widget)
         
-        title_bar = TitleBar(parent=self.content, main=self)
-        title_layout = title_bar.setup_layout()
+    # Setup central widget
+    def setupCentralWidget(self):
+        self.window_widget = QWidget(self)
+        self.window_layout = QHBoxLayout(self.window_widget)
+        self.window_layout.setContentsMargins(0, 0, 0, 0)
+            
+    # Setup sidebar layout
+    def sidebar_layout(self):
+        sidebar_layout = Sidebar(parent=self, list=self.sidebar_items, stack=self.stack_widget)
+        self.window_layout.addWidget(sidebar_layout)
         
-        footer = Footer(data=self.footer_data, parent=self.content)
+    # Setup content layout
+    def content_layout(self):
+        content = QWidget(self)
+        content.setObjectName("content")
         
-        result_list = ResultList(parent=self.content)
+        content_layout = QVBoxLayout(content)
+            
+        # Title bar layout
+        title_bar = TitleBar(main=self, parent=content)
+        content_layout.addWidget(title_bar)
         
-        test_tab = TestTab(parent=self.content)
         
-        history = History(parent=self.content, stack=self.stack)
+        # Result list layout stack
+        result_list = ResultList(parent=content)
+        self.stack_widget.addWidget(result_list)
         
-        self.stack.addWidget(result_list)
-        self.stack.addWidget(test_tab)
-        self.stack.addWidget(history)
+        # Test tab layout stack
+        test_tab = TestTab(parent=content)
+        self.stack_widget.addWidget(test_tab)
         
-        self.content_layout.addWidget(title_layout)
-        self.content_layout.addWidget(self.stack)
-        self.content_layout.addWidget(footer)
+        # History layout stack
+        history = History(parent=content, stack=self.stack_widget)
+        self.stack_widget.addWidget(history)
         
-        self.sidebar = Sidebar(parent=self, list=self.sidebar_items, stack=self.stack)
-        self.central_layout.addWidget(self.sidebar)
-        self.central_layout.addWidget(self.content)
+        content_layout.addWidget(self.stack_widget)
         
-        self.setCentralWidget(self.central_widget)
+        # Footer layout
+        footer = Footer(data=self.footer_data, parent=content)
+        content_layout.addWidget(footer)
+        
+        self.window_layout.addWidget(content)
         
     # Зміна стану вікна
     def toggle_maximized(self):
@@ -95,3 +111,4 @@ class Window(QMainWindow):
     def setup_ui(self):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)

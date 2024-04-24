@@ -7,12 +7,24 @@ from pages.result_list.result_list import ResultList
 class GridLayout(QFrame):
     def __init__(self, parent, item, stack: QStackedWidget, title=False):
         super(GridLayout, self).__init__(parent)
+        self.setObjectName("historyItem")
+        
         self.stack = stack
         self.item = item
+        self.title = title
         
-        grid_layout = QGridLayout(self)
-        grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.grid_layout()
+        self.grid_columns()
         
+        self.setLayout(self.grid_layout)
+        
+    # Setup grid layout
+    def grid_layout(self):
+        self.grid_layout = QGridLayout(self)
+        self.grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        
+    # Setup grid columns
+    def grid_columns(self):
         grid_id = QLabel(self.item["file_id"], parent=self)
         grid_id.setObjectName("historyText")
         grid_name = QLabel(self.item["file_name"], parent=self)
@@ -27,32 +39,32 @@ class GridLayout(QFrame):
         grid_delete = QPushButton(parent=self)
         grid_delete.setFixedWidth(20)
         
-        if not title:
+        if not self.title:
             grid_icon = QIcon("media/icons/trash.png")
             grid_delete.setIcon(grid_icon)
             
             grid_delete.clicked.connect(self.onPressDelete)
         
-        grid_layout.setColumnMinimumWidth(0, 20)
-        grid_layout.setColumnStretch(1, 1)
-        grid_layout.setColumnMinimumWidth(2, 100)
-        grid_layout.setColumnMinimumWidth(3, 100)
-        grid_layout.setColumnMinimumWidth(4, 100)
-        grid_layout.setColumnMinimumWidth(5, 20)
+        self.grid_layout.setColumnMinimumWidth(0, 20)
+        self.grid_layout.setColumnStretch(1, 1)
+        self.grid_layout.setColumnMinimumWidth(2, 100)
+        self.grid_layout.setColumnMinimumWidth(3, 100)
+        self.grid_layout.setColumnMinimumWidth(4, 100)
+        self.grid_layout.setColumnMinimumWidth(5, 20)
                             
-        grid_layout.addWidget(grid_id, 0, 0)
-        grid_layout.setSpacing(20)
-        grid_layout.addWidget(grid_name, 0, 1)
-        grid_layout.setSpacing(20)
-        grid_layout.addWidget(grid_date, 0, 2)
-        grid_layout.setSpacing(20)
-        grid_layout.addWidget(grid_size, 0, 3)
-        grid_layout.setSpacing(20)
-        grid_layout.addWidget(grid_type, 0, 4)
-        grid_layout.setSpacing(20)
-        grid_layout.addWidget(grid_delete, 0, 5)
+        self.grid_layout.addWidget(grid_id, 0, 0)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_name, 0, 1)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_date, 0, 2)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_size, 0, 3)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_type, 0, 4)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_delete, 0, 5)
         
-        self.setLayout(grid_layout)
+        self.setLayout(self.grid_layout)
         
     def mousePressEvent(self, event: QMouseEvent | None) -> None:
         if event.button() == Qt.MouseButton.LeftButton:

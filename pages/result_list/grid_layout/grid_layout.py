@@ -1,11 +1,14 @@
-from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton, QSizePolicy
+from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton, QSizePolicy, QWidget
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import Qt
 
+from typing import Optional
 
-class GridLayout():
-    def __init__(self, parent):
-        super().__init__()
+
+class GridLayout(QFrame):
+    def __init__(self, parent: Optional[QWidget] = None):
+        super(QFrame, self).__init__(parent)
+        self.setObjectName("gridLayout")
         
         self.parent = parent
         self.json_data = [
@@ -41,39 +44,41 @@ class GridLayout():
             },
         ]
         
+        self.setup_layout()
+        self.setup_columns()
+        
+        self.setLayout(self.grid_layout)
+
+    # Setup grid layout
     def setup_layout(self):
-        grid_frame = QFrame(parent=self.parent)
-        # grid_layout = QVBoxLayout(grid_frame)
+        self.grid_layout = QGridLayout(self)
+        self.grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        grid = QGridLayout(parent=grid_frame)
-        grid.setAlignment(Qt.AlignmentFlag.AlignTop)
+    # Setup grid columns
+    def setup_columns(self):
+        grid_id = QLabel("№", parent=self)
+        grid_name = QLabel("Ім'я:", parent=self)
+        # grid_about = QLabel("Опис:", parent=self)
+        grid_price = QLabel("Ціна:", parent=self)
+        grid_more = QPushButton(parent=self)
         
-        grid_id = QLabel("№", parent=grid_frame)
-        grid_name = QLabel("Ім'я:", parent=grid_frame)
-        # grid_about = QLabel("Опис:", parent=grid_frame)
-        grid_price = QLabel("Ціна:", parent=grid_frame)
+        self.grid_layout.setColumnMinimumWidth(0, 20)
+        self.grid_layout.setColumnStretch(1, 1)
+        self.grid_layout.setColumnMinimumWidth(2, 100)
+        self.grid_layout.setColumnMinimumWidth(3, 20)
+        # self.grid_layout.setColumnMinimumWidth(4, 20)
         
-        grid_more = QPushButton(parent=grid_frame)
+        self.grid_layout.addWidget(grid_id, 0, 0)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_name, 0, 1)
+        self.grid_layout.setSpacing(20)
+        # self.grid_layout.addWidget(grid_about, 0, 2)
+        # self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_price, 0, 2)
+        self.grid_layout.setSpacing(20)
+        self.grid_layout.addWidget(grid_more, 0, 3)
         
-        grid.setColumnMinimumWidth(0, 20)
-        grid.setColumnStretch(1, 1)
-        grid.setColumnMinimumWidth(2, 100)
-        grid.setColumnMinimumWidth(3, 20)
-        # grid.setColumnMinimumWidth(4, 20)
-        
-        grid.addWidget(grid_id, 0, 0)
-        grid.setSpacing(20)
-        grid.addWidget(grid_name, 0, 1)
-        grid.setSpacing(20)
-        # grid.addWidget(grid_about, 0, 2)
-        # grid.setSpacing(20)
-        grid.addWidget(grid_price, 0, 2)
-        grid.setSpacing(20)
-        grid.addWidget(grid_more, 0, 3)
-        
-        self.show_list(grid_frame, grid, self.json_data)
-        
-        return grid_frame
+        self.show_list(self, self.grid_layout, self.json_data)
     
     # Виведення списку
     def show_list(self, parent, grid_layout: QGridLayout, list):
