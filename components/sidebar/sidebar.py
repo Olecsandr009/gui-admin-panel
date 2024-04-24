@@ -1,58 +1,62 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QStackedWidget, QFrame, QHBoxLayout, QLabel
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QStackedWidget, QFrame, QHBoxLayout, QStyleOption, QStyle
+from PyQt6.QtGui import QFont, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
 
-from typing import List
+from typing import List, Optional
 
 from components.sidebar.logo.logo import Logo
 from utils.stacked_nav.stacked_nav import StackedNav
 
 
 class Sidebar(QWidget):
-    def __init__(self, parent, stack: QStackedWidget, list: List[str]):
+    def __init__(
+        self,
+        stack: QStackedWidget,
+        list: List[str],
+        parent: Optional[QWidget]
+    ):
+        # Sidebar layout
         super(Sidebar, self).__init__(parent)
+        self.setObjectName("sidebar")
+        
+        self.setFixedWidth(250)
 
         self.parent = parent
         self.stack = stack
         self.list = list
         
-        self.width = 250
-        self.name = "sidebar"
-
-        self.setObjectName("sidebar")
-        sidebar_layout = QVBoxLayout(self)
-        sidebar_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.setup_layout()
+        self.logo_layout()
+        self.nav_layout()
         
-        logo = Logo(parent=self)
-        sidebar_logo = logo.setup_layout()
-        sidebar_nav = self.setup_nav(self)
+        self.setLayout(self.sidebar_layout)
         
-        sidebar_layout.addWidget(sidebar_logo)
-        sidebar_layout.addSpacing(20)
-        sidebar_layout.addWidget(sidebar_nav)
-        sidebar_layout.setContentsMargins(12, 12, 12, 12)
+    # Setup sidebar layout
+    def setup_layout(self):
+        self.sidebar_layout = QVBoxLayout(self)
+        self.sidebar_layout.setContentsMargins(12, 12, 12, 12)
+        self.sidebar_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
-        self.setup_ui(self)
+    # Setup logo layout
+    def logo_layout(self):
+        logo = Logo(self)
+        self.sidebar_layout.addWidget(logo)
+        self.sidebar_layout.addSpacing(20)
         
-        self.setLayout(sidebar_layout)
-    
-    # Налаштування вигляду бокової панелі
-    def setup_ui(self, parent): 
-        parent.setFixedWidth(self.width)
-        parent.setMinimumWidth(self.width)
-        
-    # Налаштування навігації
-    def setup_nav(self, parent):
-        self.sidebar_nav = QFrame(parent=parent)
+    # Setup navigation layout
+    def nav_layout(self):
+        self.sidebar_nav = QFrame(self)
         self.sidebar_nav.setObjectName("sidebar_nav")
+        
         nav_layout = QVBoxLayout(self.sidebar_nav)
         nav_layout.setContentsMargins(0,0,0,0)
         
         self.fill_navigation_list(layout=nav_layout, list=self.list)
         
-        return self.sidebar_nav
+        self.sidebar_layout.addWidget(self.sidebar_nav)
+        self.sidebar_layout.addSpacing(20)
         
-    # Налаштування фону
+    # Setup font
     def setup_font(self):
         font = QFont()
         font.setFamily("Montserrat")
@@ -61,22 +65,30 @@ class Sidebar(QWidget):
     
     # Заповнення списку для навігації
     def fill_navigation_list(self, layout: QVBoxLayout | QHBoxLayout, list: List[str]):
-        if len(list):
-            font = self.setup_font()
+        if not len(list): return
+        
+        for index, item in enumerate(list):
+            button = QPushButton(item)
+            button.setObjectName("ItemBtn")
+            button.setFont(self.setup_font())
             
-            for index, item in enumerate(list):
-                button = QPushButton(item, parent=self.sidebar_nav)
-                button.setObjectName("ItemBtn")
-                button.setFont(font)
-                
-                if index == 0:
-                    button.setStyleSheet("QPushButton {background-color: #191919}")
-                
-                layout.addWidget(button)
-                def on_button_click(clicked_index=index):
-                    return lambda: self.showPage(index=clicked_index)
-                
-                button.clicked.connect(on_button_click())
+            if index == 0:
+                button.setStyleSheet("QPushButton {background-color: #191919}")
+            
+            layout.addWidget(button)
+            
+            def on_button_click(clicked_index=index):
+                return lambda: self.showPage(index=clicked_index)
+            
+            button.clicked.connect(on_button_click())
+            
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)
                 
     # Відобраєення певної сторінки  
     def showPage(self, index):

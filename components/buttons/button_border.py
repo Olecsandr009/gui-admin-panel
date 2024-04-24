@@ -1,30 +1,34 @@
-from PyQt6.QtWidgets import QPushButton
-from PyQt6.QtGui import QIcon, QFont
+from PyQt6.QtWidgets import QPushButton, QWidget, QStyleOption, QStyle
+from PyQt6.QtGui import QIcon, QFont, QPainter, QPaintEvent
+
+from typing import Optional
 
 
-class ButtonBorder():
-    def __init__(self, parent, text, icon = None):
-        super().__init__()
+class ButtonBorder(QPushButton):
+    def __init__(
+        self,
+        icon: Optional[QIcon],
+        text: Optional[str],
+        parent: Optional[QWidget] = None
+    ):
+        # Button border widget
+        super(ButtonBorder, self).__init__(text, parent)
         
-        self.parent = parent
-        self.text = text
-        self.icon = icon
+        self.setObjectName("buttonBorder")
         
-    # Налаштування елементів
-    def setup_layout(self):
-        button_border = QPushButton(self.text, parent=self.parent)
-        button_border.setObjectName("buttonBorder")
+        if icon: self.setIcon(icon)
         
-        font = self.setup_font()
-        button_border.setFont(font)
+        self.setFont(self.setup_font())
         
-        if self.icon:
-            button_icon = QIcon(self.icon)
-            button_border.setIcon(button_icon)
-            
-        return button_border
-    
-    # Налаштування фону
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)
+        
+    # Set font
     def setup_font(self):
         font = QFont()
         font.setFamily("Montserrat")

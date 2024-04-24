@@ -30,6 +30,11 @@ class Window(QMainWindow):
             "Історія"
         ]
         
+        self.footer_data = {
+                "author": "Oleksandr",
+                "type": "Json"
+        }
+        
         self.files_list = []
 
         self.apply_styles()
@@ -48,8 +53,7 @@ class Window(QMainWindow):
         title_bar = TitleBar(parent=self.content, main=self)
         title_layout = title_bar.setup_layout()
         
-        footer = Footer(parent=self.content)
-        footer_layout = footer.setup_layout()
+        footer = Footer(data=self.footer_data, parent=self.content)
         
         result_list = ResultList(parent=self.content)
         
@@ -63,7 +67,7 @@ class Window(QMainWindow):
         
         self.content_layout.addWidget(title_layout)
         self.content_layout.addWidget(self.stack)
-        self.content_layout.addWidget(footer_layout)
+        self.content_layout.addWidget(footer)
         
         self.sidebar = Sidebar(parent=self, list=self.sidebar_items, stack=self.stack)
         self.central_layout.addWidget(self.sidebar)

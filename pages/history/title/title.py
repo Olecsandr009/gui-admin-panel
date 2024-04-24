@@ -4,6 +4,13 @@ from PyQt6.QtCore import Qt
 
 from components.buttons.button_border import ButtonBorder
 
+from dataclasses import dataclass
+from typing import Optional
+
+
+@dataclass
+class TitleData:
+    pass
 
 class Title(QWidget):
     def __init__(self, parent=None):
@@ -22,10 +29,9 @@ class Title(QWidget):
         title_button_frame = QFrame(parent=parent)
         button_frame_layout = QHBoxLayout(title_button_frame)
         
-        button_border = ButtonBorder(parent, "Додати новий файл")
-        history_button = button_border.setup_layout()
+        button_border = ButtonBorder(None, "Додати новий файл", title_button_frame )
         button_frame_layout.setAlignment(Qt.AlignmentFlag.AlignRight)
-        button_frame_layout.addWidget(history_button)
+        button_frame_layout.addWidget(button_border)
         
         title_text.setObjectName("historyTitle")
         
