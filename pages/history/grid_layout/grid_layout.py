@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import QFrame, QGridLayout, QLabel, QPushButton, QStackedWidget
-from PyQt6.QtGui import QIcon, QMouseEvent
+from PyQt6.QtWidgets import QFrame, QGridLayout, QLabel, QPushButton, QStackedWidget, QStyleOption, QStyle
+from PyQt6.QtGui import QIcon, QMouseEvent, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
 
 from pages.result_list.result_list import ResultList
@@ -85,3 +85,11 @@ class GridLayout(QFrame):
                 if widget is not None:
                     widgets.append(widget)
         return widgets
+    
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)

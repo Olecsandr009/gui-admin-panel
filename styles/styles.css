@@ -18,6 +18,9 @@ QWidget#titleBar {
 QWidget#Title {
     background-color: blue;
 }
+QWidget#scrollWidget {
+    background-color: #0B0A0B;
+}
 QPushButton#ItemBtn {
     text-align: left;
     padding: 8px 10px;
@@ -62,4 +65,33 @@ QFrame#item,
 QPushButton#item,
 QLabel#item {
     background-color: red;
+}
+QScrollBar:vertical {
+    border: 2px solid #1a0b0b;
+    background-color: #141010;
+    width: 10px;
+}
+QScrollBar::handle:vertical {
+    min-height: 0px;
+    border: 0px solid #0B0A0B;
+    border-radius: 10px;
+    background-color: #282828;
+}
+QScrollBar::add-line:vertical {
+    height: 0px;
+    subcontroll-position: bottom;
+    subcontroll-origin: margin;
+    border: none;
+    background-color: none;
+}
+QScrollBar::sub-line:vertical {
+    height: 0px;
+    subcontroll-position: top;
+    subcontroll-origin: margin;
+    border: none;
+    background-color: none;
+}
+QScrollArea,
+QScrollBar {
+    background-color: transparent;
 }

@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QWidget, QLabel
 from PyQt6.QtGui import QPixmap
 
 from typing import Optional
+from urllib.request import urlopen
 
 
 class Image(QLabel):
@@ -10,12 +11,20 @@ class Image(QLabel):
         path: str,
         width: int,
         height: int,
-        parent: Optional[QWidget] = None
+        parent: Optional[QWidget] = None,
+        url: Optional[str] = None
     ):
         # Image widget
         super(Image, self).__init__(parent)
-        
-        image_pixmap = QPixmap(path)
-        image_pixmap = image_pixmap.scaled(width, height)
-        
-        self.setPixmap(image_pixmap)
+        try:
+            if not url:
+                image_pixmap = QPixmap(path)
+                image_pixmap = image_pixmap.scaled(width, height)
+            else:
+                data = urlopen(url).read()
+                image_pixmap = QPixmap()
+                image_pixmap.loadFromData(data)
+                # image_pixmap = image_pixmap.scaled(width, height)
+            self.setPixmap(image_pixmap)
+        except Exception as e:
+            print(f"Error loading image: {e}")

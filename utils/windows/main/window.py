@@ -1,6 +1,5 @@
 from PyQt6.QtWidgets import QMainWindow, QHBoxLayout, QWidget, QTabWidget, QVBoxLayout, QStackedWidget, QPushButton
-
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QPoint, QPointF
 
 from components.sidebar.sidebar import Sidebar
 from components.title_bar.title_bar import TitleBar
@@ -10,18 +9,18 @@ from pages.result_list.result_list import ResultList
 from pages.test_tab.test_tab import TestTab
 from pages.history.history import History
 
-from utils.stacked_nav.stacked_nav import StackedNav
-
 
 class Window(QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
         
         self.title = "GUI Admin panel"
-        self.top = 100
-        self.left = 200
-        self.width = 1000
-        self.height = 600
+        self.top = 50
+        self.left = 100
+        self.width = 1200
+        self.height = 800
+        
+        self.old_pos = None
         
         self.stack_widget = QStackedWidget()
         
@@ -112,3 +111,19 @@ class Window(QMainWindow):
         self.setWindowTitle(self.title)
         self.setGeometry(self.left, self.top, self.width, self.height)
         self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
+        # self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        
+    def mousePressEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.old_pos = event.globalPosition()
+
+    def mouseMoveEvent(self, event):
+        if self.old_pos:
+            delta = event.globalPosition() - self.old_pos
+            new_pos = self.pos() + QPoint(int(delta.x()), int(delta.y()))
+            self.move(new_pos)
+            self.old_pos = event.globalPosition()
+
+    def mouseReleaseEvent(self, event):
+        if event.button() == Qt.MouseButton.LeftButton:
+            self.old_pos = None

@@ -1,5 +1,5 @@
-from PyQt6.QtGui import QPaintEvent, QPainter, QFont
 from PyQt6.QtWidgets import QWidget, QHBoxLayout, QLabel, QStyleOption, QStyle, QFrame
+from PyQt6.QtGui import QPaintEvent, QPainter, QFont
 from PyQt6.QtCore import Qt
 
 from components.buttons.button_border import ButtonBorder

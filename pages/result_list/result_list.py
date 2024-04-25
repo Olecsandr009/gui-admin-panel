@@ -1,24 +1,29 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame, QHBoxLayout
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame, QHBoxLayout, QScrollArea, QStyleOption, QStyle
+from PyQt6.QtGui import QFont, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+
+import json
 
 from pages.result_list.grid_layout.grid_layout import GridLayout
 
 
 class ResultList(QWidget):
-    def __init__(self, parent = None, filename:str = None):
+    def __init__(self, parent = None, filename:str = "iphone3"):
         super(ResultList, self).__init__(parent)
         self.setObjectName("resultList")
+        
+        self.filename = filename
 
-        self.result_layout()
+        self.setup_layout()
         
         self.title_layout()
+        self.scroll_area()
         self.grid_layout()
         
         self.setLayout(self.result_layout)
 
     # Setup result layout
-    def result_layout(self):
+    def setup_layout(self):
         self.result_layout = QVBoxLayout(self)
         self.result_layout.setContentsMargins(0, 0, 0, 0)
         
@@ -38,15 +43,47 @@ class ResultList(QWidget):
         
         self.result_layout.addWidget(result_title)
         
+    # Setup scroll area
+    def scroll_area(self):
+        scroll_area = QScrollArea(self)
+        scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        scroll_area.setContentsMargins(0, 0, 0, 0)
+        scroll_area.setWidgetResizable(True)
+        
+        scroll_content = QWidget(scroll_area)
+        scroll_content.setObjectName("scrollWidget")
+        self.scroll_layout = QVBoxLayout(scroll_content)
+        
+        scroll_content.setLayout(self.scroll_layout)
+        
+        scroll_area.setWidget(scroll_content)
+        
+        self.result_layout.addWidget(scroll_area)
+        
     # Setup grid layout
     def grid_layout(self):
-        grid_layout = GridLayout(self)
+        if not self.filename: return
         
-        self.result_layout.addWidget(grid_layout)
-    
+        data = []
+        
+        with open(f"storage/json/{self.filename}.json") as file_json:
+            data = json.load(file_json)
+        
+        grid_layout = GridLayout(self.filename, data, self)
+        
+        self.scroll_layout.addWidget(grid_layout)    
+        
     # Налаштування фону
     def setup_font(self):
         font = QFont()
         font.setFamily("Montserrat")
         font.setPointSize(32)
         return font
+    
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)

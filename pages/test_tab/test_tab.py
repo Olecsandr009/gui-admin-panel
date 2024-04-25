@@ -1,4 +1,5 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton, QStyleOption, QStyle
+from PyQt6.QtGui import QPainter, QPaintEvent
 
 
 class TestTab(QWidget):

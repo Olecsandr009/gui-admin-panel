@@ -1,6 +1,6 @@
-from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFrame, QStyleOption, QStyle
+from PyQt6.QtGui import QFont, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
 import os
 from datetime import datetime
 
@@ -91,6 +91,14 @@ class History(QWidget):
                 files_list.append(file_data)
                 
         return files_list
+    
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)
     
     # Конвертация байтов
     def convert_bytes(self, bytes:int):

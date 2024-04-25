@@ -1,48 +1,19 @@
-from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton, QSizePolicy, QWidget
-from PyQt6.QtGui import QIcon
+from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton, QSizePolicy, QWidget, QStyleOption, QStyle
+from PyQt6.QtGui import QIcon, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
 
 from typing import Optional
+from utils.windows.item.window import Window
 
 
 class GridLayout(QFrame):
-    def __init__(self, parent: Optional[QWidget] = None):
+    def __init__(self, filename, item, parent: Optional[QWidget] = None):
         super(QFrame, self).__init__(parent)
         self.setObjectName("gridLayout")
         
+        self.window = Window()
         self.parent = parent
-        self.json_data = [
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-            {
-                "json_name": "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)",
-                "json_about": "Екран (6.7\", OLED (Super Retina XDR), 2796x1290) / Apple A17 Pro / основна потрійна камера: 48 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 256 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                "json_price": "60 499₴"
-            },
-        ]
+        self.json_data = item
         
         self.setup_layout()
         self.setup_columns()
@@ -87,13 +58,14 @@ class GridLayout(QFrame):
         for index, item in enumerate(list):
             grid_index = index + 1
             grid_id = QLabel(f"{grid_index}", parent=parent)
-            grid_name = QLabel(item["json_name"], parent=parent)
+            grid_name = QLabel(item["name"], parent=parent)
             # grid_about = QLabel(item['json_about'], parent=parent)
-            grid_price = QLabel(item["json_price"], parent=parent)
+            grid_price = QLabel(f"{item["price"]}", parent=parent)
             
             grid_more_icon = QIcon("media/icons/dots.png")
             grid_more = QPushButton(parent=parent)
             grid_more.setIcon(grid_more_icon)
+            grid_more.clicked.connect(self.click_handler)
             
             # grid_about.setMaximumWidth(400)
             grid_price.setMaximumWidth(100)
@@ -107,3 +79,15 @@ class GridLayout(QFrame):
             grid_layout.addWidget(grid_price, grid_index, 2)
             grid_layout.setSpacing(20)
             grid_layout.addWidget(grid_more, grid_index, 3)
+            
+    # Click handler
+    def click_handler(self):
+        self.window.show()
+            
+    # Paint widget
+    def paintEvent(self, a0: QPaintEvent | None) -> None:
+        o = QStyleOption()
+        o.initFrom(self)
+        p = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
+        return super().paintEvent(a0)
