@@ -1,37 +1,49 @@
-from PyQt6.QtWidgets import QFrame, QVBoxLayout, QGridLayout, QLabel, QPushButton, QSizePolicy, QWidget, QStyleOption, QStyle
+from PyQt6.QtWidgets import QGridLayout, QWidget, QLabel, QPushButton, QStyleOption, QStyle, QFrame
 from PyQt6.QtGui import QIcon, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
 
 from typing import Optional
+
 from utils.windows.item.window import Window
 
 
 class GridLayout(QFrame):
-    def __init__(self, filename, item, parent: Optional[QWidget] = None):
-        super(QFrame, self).__init__(parent)
-        self.setObjectName("gridLayout")
+    def __init__(self, filename, item, id, title = False, parent: Optional[QWidget] = None):
+        super(GridLayout, self).__init__(parent)
+        self.setObjectName("result-grid")
         
         self.window = Window()
         self.parent = parent
-        self.json_data = item
+        self.item_data = item
+        self.id = id
+        self.title = title
         
         self.setup_layout()
-        self.setup_columns()
+        self.grid_columns()
         
         self.setLayout(self.grid_layout)
-
+        
     # Setup grid layout
     def setup_layout(self):
         self.grid_layout = QGridLayout(self)
         self.grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
     # Setup grid columns
-    def setup_columns(self):
-        grid_id = QLabel("№", parent=self)
-        grid_name = QLabel("Ім'я:", parent=self)
+    def grid_columns(self):
+        grid_id = QLabel(str(self.id), parent=self.parent)
+        grid_name = QLabel(self.item_data["name"], parent=self.parent)
         # grid_about = QLabel("Опис:", parent=self)
-        grid_price = QLabel("Ціна:", parent=self)
-        grid_more = QPushButton(parent=self)
+        # grid_about.setMaximumWidth(400)
+        grid_price = QLabel(str(self.item_data["price"]), parent=self.parent)
+        grid_price.setMaximumWidth(100)
+        
+        grid_more = QPushButton(parent=self.parent)
+        grid_more.setFixedWidth(20)
+        
+        if not self.title:
+            grid_more_icon = QIcon("media/icons/dots.png")
+            grid_more.setIcon(grid_more_icon)
+            grid_more.clicked.connect(self.click_handler)
         
         self.grid_layout.setColumnMinimumWidth(0, 20)
         self.grid_layout.setColumnStretch(1, 1)
@@ -49,41 +61,10 @@ class GridLayout(QFrame):
         self.grid_layout.setSpacing(20)
         self.grid_layout.addWidget(grid_more, 0, 3)
         
-        self.show_list(self, self.grid_layout, self.json_data)
-    
-    # Виведення списку
-    def show_list(self, parent, grid_layout: QGridLayout, list):
-        if not list: return
-        
-        for index, item in enumerate(list):
-            grid_index = index + 1
-            grid_id = QLabel(f"{grid_index}", parent=parent)
-            grid_name = QLabel(item["name"], parent=parent)
-            # grid_about = QLabel(item['json_about'], parent=parent)
-            grid_price = QLabel(f"{item["price"]}", parent=parent)
-            
-            grid_more_icon = QIcon("media/icons/dots.png")
-            grid_more = QPushButton(parent=parent)
-            grid_more.setIcon(grid_more_icon)
-            grid_more.clicked.connect(self.click_handler)
-            
-            # grid_about.setMaximumWidth(400)
-            grid_price.setMaximumWidth(100)
-            
-            grid_layout.addWidget(grid_id, grid_index, 0)
-            grid_layout.setSpacing(20)
-            grid_layout.addWidget(grid_name, grid_index, 1)
-            grid_layout.setSpacing(20)
-            # grid_layout.addWidget(grid_about, grid_index, 2)
-            # grid_layout.setSpacing(20)
-            grid_layout.addWidget(grid_price, grid_index, 2)
-            grid_layout.setSpacing(20)
-            grid_layout.addWidget(grid_more, grid_index, 3)
-            
     # Click handler
     def click_handler(self):
         self.window.show()
-            
+        
     # Paint widget
     def paintEvent(self, a0: QPaintEvent | None) -> None:
         o = QStyleOption()

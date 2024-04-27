@@ -68,10 +68,21 @@ class ResultList(QWidget):
         
         with open(f"storage/json/{self.filename}.json") as file_json:
             data = json.load(file_json)
+            
+        if not data: return
         
-        grid_layout = GridLayout(self.filename, data, self)
+        grid_title = GridLayout(self.filename, {
+            "name": "Ім'я:",
+            "price": "Ціна:"
+        }, "№:", title=True, parent=self)
+        self.scroll_layout.addWidget(grid_title)
         
-        self.scroll_layout.addWidget(grid_layout)    
+        for index, item in enumerate(data):
+            grid_layout = GridLayout(self.filename, item, index + 1, False, self)
+            self.scroll_layout.addWidget(grid_layout)    
+        
+        # grid_layout = GridLayout(self.filename, data, self)
+        
         
     # Налаштування фону
     def setup_font(self):

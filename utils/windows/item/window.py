@@ -58,7 +58,14 @@ class Window(QMainWindow):
         
     # Setup media
     def setup_media(self):
-        pass
+        window_media = QStackedWidget(self.central_widget)
+        
+        for image_url in self.data["images"]:
+            image = Image("", 100, 100, self.central_widget, str(image_url))
+            image.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            window_media.addWidget(image)
+        
+        self.central_layout.addWidget(window_media)
         
     # Setup content
     def setup_content(self):
