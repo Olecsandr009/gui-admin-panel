@@ -8,7 +8,6 @@ class GridLayout(QFrame):
     def __init__(self, parent, item, stack: QStackedWidget, title=False):
         super(GridLayout, self).__init__(parent)
         self.setObjectName("historyItem")
-        
         self.stack = stack
         self.item = item
         self.title = title
@@ -21,6 +20,7 @@ class GridLayout(QFrame):
     # Setup grid layout
     def grid_layout(self):
         self.grid_layout = QGridLayout(self)
+        self.grid_layout.setContentsMargins(0, 8, 0, 8)
         self.grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
     # Setup grid columns

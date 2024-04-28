@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QGridLayout, QWidget, QLabel, QPushButton, QStyleOption, QStyle, QFrame
-from PyQt6.QtGui import QIcon, QPainter, QPaintEvent
+from PyQt6.QtGui import QIcon, QPainter, QPaintEvent, QMouseEvent
 from PyQt6.QtCore import Qt
 
 from typing import Optional
@@ -10,10 +10,11 @@ from utils.windows.item.window import Window
 class GridLayout(QFrame):
     def __init__(self, filename, item, id, title = False, parent: Optional[QWidget] = None):
         super(GridLayout, self).__init__(parent)
-        self.setObjectName("result-grid")
+        self.setObjectName("resultGrid")
         
-        self.window = Window()
+        self.window = None
         self.parent = parent
+        self.filename = filename
         self.item_data = item
         self.id = id
         self.title = title
@@ -26,6 +27,7 @@ class GridLayout(QFrame):
     # Setup grid layout
     def setup_layout(self):
         self.grid_layout = QGridLayout(self)
+        self.grid_layout.setContentsMargins(0, 8, 0, 8)
         self.grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
     # Setup grid columns
@@ -43,7 +45,6 @@ class GridLayout(QFrame):
         if not self.title:
             grid_more_icon = QIcon("media/icons/dots.png")
             grid_more.setIcon(grid_more_icon)
-            grid_more.clicked.connect(self.click_handler)
         
         self.grid_layout.setColumnMinimumWidth(0, 20)
         self.grid_layout.setColumnStretch(1, 1)
@@ -61,9 +62,13 @@ class GridLayout(QFrame):
         self.grid_layout.setSpacing(20)
         self.grid_layout.addWidget(grid_more, 0, 3)
         
-    # Click handler
-    def click_handler(self):
-        self.window.show()
+    # Mouse press event handler
+    def mousePressEvent(self, event: QMouseEvent | None) -> None:
+        if event.button() == Qt.MouseButton.LeftButton:
+            if self.window is None:
+                self.window = Window(self.filename, self.item_data["name"])
+            self.window.show()
+        return super().mousePressEvent(event)
         
     # Paint widget
     def paintEvent(self, a0: QPaintEvent | None) -> None:

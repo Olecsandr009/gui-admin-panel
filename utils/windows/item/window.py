@@ -9,17 +9,18 @@ from typing import Optional
 import json
 
 
-class Window(QMainWindow):
+class Window(QWidget):
     def __init__(self, filename = None, name = None, parent: Optional[QWidget] = None):
         super(Window, self).__init__(parent)
+        self.setObjectName("item-window")
         self.title = "Item window"
         self.top = 200
         self.left = 300
         self.width = 1200
         self.height = 800
         
-        self.filename = "iphone3"
-        self.name = "Мобільний телефон Apple iPhone 15 Pro Max 256GB Natural Titanium (MU793RX/A)"
+        self.filename = filename
+        self.name = name
         
         self.data = None
         
@@ -31,8 +32,7 @@ class Window(QMainWindow):
         self.setup_media()
         self.setup_content()
         
-        self.central_widget.setLayout(self.central_layout)
-        self.setCentralWidget(self.central_widget)
+        self.setLayout(self.central_layout)
         
     # Apply styles
     def apply_styles(self):
@@ -46,22 +46,20 @@ class Window(QMainWindow):
     def setup_window(self):
         self.setWindowTitle = self.title
         self.setGeometry(self.left, self.top, self.width, self.height)
-        # self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.FramelessWindowHint)
     
     # Setup layout
     def setup_layout(self):
-        self.central_widget = QWidget(self)
-        self.central_widget.setObjectName("window-central")
-        
-        self.central_layout = QHBoxLayout(self.central_widget)
+        self.central_layout = QHBoxLayout(self)
         self.central_layout.setContentsMargins(0, 0, 0, 0)
         
     # Setup media
     def setup_media(self):
-        window_media = QStackedWidget(self.central_widget)
+        window_media = QStackedWidget(self)
+        window_media.setContentsMargins(0, 0, 0, 0)
         
         for image_url in self.data["images"]:
-            image = Image("", 100, 100, self.central_widget, str(image_url))
+            image = Image("", 100, 100, self, str(image_url))
             image.setAlignment(Qt.AlignmentFlag.AlignCenter)
             window_media.addWidget(image)
         
@@ -75,7 +73,7 @@ class Window(QMainWindow):
         content_layout = QVBoxLayout(window_content)
         content_layout.setContentsMargins(0, 0, 0, 0)
         
-        content_Tools = Tools(window_content)
+        content_Tools = Tools(self)
         content_layout.addWidget(content_Tools)
         
         content_scroll = QScrollArea(window_content)
@@ -102,6 +100,7 @@ class Window(QMainWindow):
             item_layout.addWidget(item_name)
             
             item_input = QPlainTextEdit(data_item)
+            item_input.setObjectName("window-input")
             item_input.insertPlainText(str(self.data[key]))
             item_layout.addWidget(item_input)
             
@@ -115,6 +114,7 @@ class Window(QMainWindow):
         
     # Get filename data
     def get_data(self):
+        print("get data")
         data = []
         
         with open(f"storage/json/{self.filename}.json") as file_json:
@@ -123,3 +123,4 @@ class Window(QMainWindow):
         for element in data:
             if element["name"] == str(self.name):
                 self.data = element
+            

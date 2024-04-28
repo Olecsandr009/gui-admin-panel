@@ -74,7 +74,7 @@ class ResultList(QWidget):
         grid_title = GridLayout(self.filename, {
             "name": "Ім'я:",
             "price": "Ціна:"
-        }, "№:", title=True, parent=self)
+        }, "№", title=True, parent=self)
         self.scroll_layout.addWidget(grid_title)
         
         for index, item in enumerate(data):

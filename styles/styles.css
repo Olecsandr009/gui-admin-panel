@@ -6,7 +6,10 @@
     margin: 0;
     color: #fff;
 }
-QMainWindow {
+QMainWindow,
+QWidget#item-window,
+QWidget#window-item,
+QWidget#window-items {
     background-color: #0B0A0B;
 }
 QWidget#sidebar {
@@ -55,6 +58,7 @@ QFrame#footer {
 QFrame#historyItem {
     border-radius: 12px;
 }
+QFrame#resultGrid:hover,
 QFrame#historyItem:hover {
     background-color: #191919;
 }
@@ -93,5 +97,9 @@ QScrollBar::sub-line:vertical {
 }
 QScrollArea,
 QScrollBar {
+    background-color: transparent;
+}
+QPlainTextEdit#window-input {
+    border: none;
     background-color: transparent;
 }
