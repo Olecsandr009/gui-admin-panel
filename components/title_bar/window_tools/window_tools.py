@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QFrame, QHBoxLayout, QPushButton, QStyleOption, QStyle
-from PyQt6.QtGui import QPaintEvent, QPainter
+from PyQt6.QtGui import QPaintEvent, QPainter, QCursor
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 
@@ -30,8 +30,11 @@ class WindowTools(QFrame):
     # Setup show button widget
     def show_button(self):
         show_button = QPushButton(parent=self)
-        icon_show = QIcon("media/icons/minus.png")
         show_button.setObjectName("toolButton")
+        show_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        
+        icon_show = QIcon("media/icons/minus.png")
+        
         show_button.setIcon(icon_show)
         
         show_button.clicked.connect(self.main.showMinimized)

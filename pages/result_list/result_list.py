@@ -5,6 +5,8 @@ from PyQt6.QtCore import Qt
 import json
 
 from pages.result_list.grid_layout.grid_layout import GridLayout
+from components.layout.title.title import Title
+from components.ui.buttons.button import ButtonStyle
 
 
 class ResultList(QWidget):
@@ -16,7 +18,7 @@ class ResultList(QWidget):
 
         self.setup_layout()
         
-        self.title_layout()
+        self.setupTitleLayout()
         self.scroll_area()
         self.grid_layout()
         
@@ -28,20 +30,15 @@ class ResultList(QWidget):
         self.result_layout.setContentsMargins(0, 0, 0, 0)
         
     # Setup title layout
-    def title_layout(self):
-        result_title = QWidget(self)
-        result_title.setFixedHeight(100)
+    def setupTitleLayout(self):
+        title_layout = Title(self)
         
-        title_layout = QHBoxLayout(result_title)
-        title_layout.setContentsMargins(0, 0, 0, 0)
-        title_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        title_layout.setTitleText("Результат", 32)
+        title_layout.setFixedHeight(100)
+        title_layout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
+        title_layout.setTextAlignment(Qt.AlignmentFlag.AlignLeft)
         
-        title_text = QLabel("Результат", parent=result_title)
-        title_text.setFont(self.setup_font())
-        
-        title_layout.addWidget(title_text)
-        
-        self.result_layout.addWidget(result_title)
+        self.result_layout.addWidget(title_layout)
         
     # Setup scroll area
     def scroll_area(self):
