@@ -6,7 +6,6 @@ import json
 
 from pages.result_list.grid_layout.grid_layout import GridLayout
 from components.layout.title.title import Title
-from components.ui.buttons.button import ButtonStyle
 
 
 class ResultList(QWidget):

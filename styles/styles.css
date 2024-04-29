@@ -8,10 +8,12 @@
 }
 QMainWindow,
 QMainWindow#admin-window,
-QWidget#item-window,
 QWidget#window-item,
 QWidget#window-items {
     background-color: #121212;
+}
+QWidget#item-window {
+    background-color: #1D1D1D;
 }
 QWidget#sidebar {
     border-right: 1px solid #282828;
@@ -118,4 +120,11 @@ QPushButton#button_border {
 }
 QPushButton#button_border:hover {
     background-color: #81032B;
+}
+
+QScrollArea#scroll {
+    background-color: green;
+}
+QWidget#custom_test {
+    background-color: blue;
 }

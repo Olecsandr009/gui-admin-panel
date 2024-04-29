@@ -5,6 +5,7 @@ from PyQt6.QtGui import QImage, QPixmap
 import requests
 from utils.windows.item.tools.tools import Tools
 from utils.image.image import Image
+from utils.scroll.scroll import Scroll
 from typing import Optional
 import json
 
@@ -76,10 +77,7 @@ class Window(QWidget):
         content_Tools = Tools(self)
         content_layout.addWidget(content_Tools)
         
-        content_scroll = QScrollArea(window_content)
-        content_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        content_scroll.setContentsMargins(0, 0, 0, 0)
-        content_scroll.setWidgetResizable(True)
+        content_scroll = Scroll(window_content)
         
         content_items = QWidget(content_scroll)
         content_items.setObjectName("window-items")
@@ -107,7 +105,7 @@ class Window(QWidget):
             data_item.setLayout(item_layout)
             items_layout.addWidget(data_item)
 
-        content_scroll.setWidget(content_items)            
+        content_scroll.setWidget(content_items)
         content_layout.addWidget(content_scroll)
         window_content.setLayout(content_layout)
         self.central_layout.addWidget(window_content)

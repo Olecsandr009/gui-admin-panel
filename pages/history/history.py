@@ -5,7 +5,8 @@ import os
 from datetime import datetime
 
 from pages.history.grid_layout.grid_layout import GridLayout
-from pages.history.title.title import Title
+from components.layout.title.title import Title
+from components.ui.buttons.button import ButtonStyle
 
 
 class History(QWidget):
@@ -37,8 +38,18 @@ class History(QWidget):
         grid_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         grid_layout.setContentsMargins(0, 0, 0, 0)
         
-        title = Title(self)
-        self.history_layout.addWidget(title)
+        title_layout = Title(self)
+        
+        title_layout.setTitleText("Історія", 32)
+        title_layout.setFixedHeight(100)
+        title_layout.setAlignment(Qt.AlignmentFlag.AlignVCenter)
+        title_layout.setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+        
+        title_layout.setButton("Додати файл", ButtonStyle.BORDER)
+        title_layout.setButtonAlignment(Qt.AlignmentFlag.AlignRight)
+        title_layout.setContentsMargins(0, 0, 16, 0)
+        
+        self.history_layout.addWidget(title_layout)
         
         grid_title = GridLayout(self, {
             "file_id": "№",
