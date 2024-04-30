@@ -7,6 +7,7 @@ from enum import Enum
 from typing import Optional
 
 from components.ui.buttons.button_border import ButtonBorder
+from components.ui.buttons.button_fill import ButtonFill
 
 class ButtonStyle(Enum):
     DEFAULT = 1
@@ -39,6 +40,8 @@ class Button(QFrame):
         
         if style == ButtonStyle.BORDER:
             self.button = ButtonBorder(text=text, parent=self)
+        elif style == ButtonStyle.FILL:
+            self.button = ButtonFill(text=text, parent=self)
             
         if self.button: self.button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         

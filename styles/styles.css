@@ -12,9 +12,6 @@ QWidget#window-item,
 QWidget#window-items {
     background-color: #121212;
 }
-QWidget#item-window {
-    background-color: #1D1D1D;
-}
 QWidget#sidebar {
     border-right: 1px solid #282828;
 }
@@ -121,10 +118,40 @@ QPushButton#button_border {
 QPushButton#button_border:hover {
     background-color: #81032B;
 }
-
-QScrollArea#scroll {
-    background-color: green;
+QPushButton#button_fill {
+    border: 1px solid #81032B;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #81032B;
 }
-QWidget#custom_test {
-    background-color: blue;
+QPushButton#button_fill:hover {
+    background-color: #971841;
+}
+
+
+QWidget#item_window {
+    background-color: #1D1D1D;
+}
+QWidget#item_content {
+    background-color: transparent;
+}
+QWidget#item_tools {}
+QWidget#item_tools_button {}
+QWidget#item_data {
+    background-color: transparent;
+}
+QWidget#item_data_content {
+    background-color: transparent;
+}
+QWidget#item_apply {}
+
+QFrame#inputs_line_edit {}
+QLineEdit#inputs_line_edit_area {
+    background-color: transparent;
+    border-bottom: 1px solid #E1E1E1;
+    padding: 0 4px;
+}
+QFrame#inputs_text_edit {}
+QTextEdit#inputs_text_edit_area {
+    background-color: transparent;
 }
