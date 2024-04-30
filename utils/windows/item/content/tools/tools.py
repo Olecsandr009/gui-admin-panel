@@ -7,10 +7,14 @@ from typing import Optional
 
 
 class Tools(QWidget):
-    def __init__(self, parent: Optional[QWidget] = None):
+    # Initialize the tools widget
+    def __init__(self, main: QWidget, parent: Optional[QWidget] = None):
         super(Tools, self).__init__(parent)
-        self.setObjectName("WindowTool")
         
+        # Set the tools object name
+        self.setObjectName("item_tools")
+        
+        self.main = main
         self.parent = parent
         self.is_maximized = True
         
@@ -38,10 +42,10 @@ class Tools(QWidget):
     def show_button(self):
         show_button = QPushButton(parent=self.tools)
         icon_show = QIcon("media/icons/minus.png")
-        show_button.setObjectName("toolButton")
+        show_button.setObjectName("item_tools_button")
         show_button.setIcon(icon_show)
         
-        show_button.clicked.connect(self.parent.showMinimized)
+        show_button.clicked.connect(self.main.showMinimized)
         
         self.tools_layout.addWidget(show_button)
         self.tools_layout.addSpacing(6)
@@ -50,7 +54,7 @@ class Tools(QWidget):
     def maximize_button(self):
         maximize_button = QPushButton(parent=self.tools)
         maximize_button.setIcon(self.toggle_maximized_icon())
-        maximize_button.setObjectName("toolButton")
+        maximize_button.setObjectName("item_tools_button")
         
         maximize_button.clicked.connect(self.toggle_maximized)
         
@@ -61,10 +65,10 @@ class Tools(QWidget):
     def close_button(self):
         close_button = QPushButton(parent=self.tools)
         icon_close = QIcon("media/icons/close.png")
-        close_button.setObjectName("toolButton")
+        close_button.setObjectName("item_tools_button")
         close_button.setIcon(icon_close)
         
-        close_button.clicked.connect(self.parent.close)
+        close_button.clicked.connect(self.main.close)
         
         self.tools_layout.addWidget(close_button)
         
@@ -85,8 +89,7 @@ class Tools(QWidget):
         
     # Зміна стану вікна
     def toggle_maximized(self):
-        print('click')
-        if self.parent.isMaximized():
-            self.parent.showNormal()
+        if self.main.isMaximized():
+            self.main.showNormal()
         else:
-            self.parent.showMaximized()
+            self.main.showMaximized()

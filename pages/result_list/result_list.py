@@ -14,6 +14,24 @@ class ResultList(QWidget):
         self.setObjectName("resultList")
         
         self.filename = filename
+        
+        # line
+        # urls
+        # text
+        # numbers
+        # colors
+        
+        self.data_scheme = {
+            "name": "line",
+            "image": "urls",
+            "about": "text",
+            "discount": "numbers",
+            "price": "numbers",
+            "article": "numbers",
+            "colors": "color array",
+            "memory": "line",
+            "likes": "numbers"
+        }
 
         self.setup_layout()
         
