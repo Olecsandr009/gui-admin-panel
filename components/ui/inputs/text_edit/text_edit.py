@@ -1,16 +1,22 @@
-from PyQt6.QtWidgets import QWidget, QStyleOption, QStyle, QFrame, QVBoxLayout, QTextEdit
-from PyQt6.QtGui import QPainter, QPaintEvent
+from PyQt6.QtWidgets import QWidget, QStyleOption, QStyle, QFrame, QVBoxLayout, QTextEdit, QLabel
+from PyQt6.QtGui import QMouseEvent, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
 
 from typing import Optional
 
+from components.ui.inputs.text_edit.window.window import Window
+
 class TextEdit(QFrame):
     # Initialize the apply widget
-    def __init__(self, parent: Optional[QWidget]) -> None:
+    def __init__(self, data = None, key: str = None, parent: Optional[QWidget] = None) -> None:
         super(TextEdit, self).__init__(parent)
 
         # Set object name
         self.setObjectName("inputs_text_edit")
+        
+        self.data = data
+        self.key = key
+        self.window = None
         
         # Default margin values
         self.margin = [0, 0, 0, 0]
@@ -18,7 +24,7 @@ class TextEdit(QFrame):
         self.alignment = Qt.AlignmentFlag.AlignLeading
         
         self.__textEditLayout()
-        self.__configureLineEdit()
+        # self.__configureLineEdit()
         
         self.setLayout(self.text_layout)
 
@@ -29,6 +35,14 @@ class TextEdit(QFrame):
         p = QPainter(self)
         self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, o, p, self)
         return super().paintEvent(a0)
+    
+    # Setup the click event handler
+    def mousePressEvent(self, event: QMouseEvent | None) -> None:
+        if self.data and event.button() == Qt.MouseButton.LeftButton:
+            if self.window is None:
+                self.window = Window(self.data, self.key)
+            self.window.show()
+        return super().mousePressEvent(event)
     
     # Set the margin values
     def setContentsMargins(self, left: int, top: int, right: int, bottom: int):
@@ -46,6 +60,13 @@ class TextEdit(QFrame):
     def setFixedHeight(self, h: int) -> None:
         self.text_edit.setFixedHeight(h)
         
+    # Set the text row
+    def setText(self, text: str) -> None:
+        self.text_value = QLabel(f"{text[:50]}...", self)
+        self.text_value.setObjectName("inputs_text_edit_value")
+        
+        self.text_layout.addWidget(self.text_value)
+        
     # Setup the text edit layout
     def __textEditLayout(self):
         self.text_layout = QVBoxLayout(self)
@@ -58,3 +79,4 @@ class TextEdit(QFrame):
         self.text_edit.setObjectName("inputs_text_edit_area")
         
         self.text_layout.addWidget(self.text_edit)
+        

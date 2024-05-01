@@ -6,7 +6,7 @@ from typing import Optional
 
 class LineEdit(QFrame):
     # Initialize the apply widget
-    def __init__(self, parent: Optional[QWidget]) -> None:
+    def __init__(self, key: str = None, parent: Optional[QWidget] = None) -> None:
         super(LineEdit, self).__init__(parent)
 
         # Set object name
