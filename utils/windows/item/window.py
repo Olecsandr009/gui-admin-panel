@@ -8,6 +8,8 @@ from utils.image.image import Image
 from utils.scroll.scroll import Scroll
 from components.ui.inputs.line_edit.line_edit import LineEdit
 from components.ui.inputs.text_edit.text_edit import TextEdit
+from components.ui.inputs.color_edit.color_edit import ColorEdit
+from components.ui.inputs.urls_edit.urls_edit import UrlsEdit
 
 from typing import Optional
 import json
@@ -24,8 +26,8 @@ class Window(QWidget):
         # Default window name
         self.title = "Item window"
         # Default window position
-        self.top = 200
-        self.left = 300
+        self.top = 80
+        self.left = 200
         # Default widow size
         self.width = 1200
         self.height = 800
@@ -82,7 +84,22 @@ class Window(QWidget):
         line_edit.setFixedHeight(30)
         line_edit.setPlaceholderText("Test placeholder")
         items_layout.addWidget(line_edit)
-        
+
+        text_edit = TextEdit(self.data, "about", content_items)
+        text_edit.setFixedHeight(30)
+        # text_edit.setPlaceholderText("Test placeholder")
+        text_edit.setText(" aldkfk asdfjasdlfadla fad slf lsdafj alsdf as;ld fasdl; fj")
+        items_layout.addWidget(text_edit)
+
+        color_edit = ColorEdit(content_items)
+        color_edit.setFixedHeight(30)
+        color_edit.setColor("#ffffff")
+        color_edit.setColor("#443534")
+        items_layout.addWidget(color_edit)
+
+        urls_edit = UrlsEdit(self.data["images"], content_items)
+        items_layout.addWidget(urls_edit)
+
         # for
         for key in self.data:
             data_item = QFrame(content_items)
