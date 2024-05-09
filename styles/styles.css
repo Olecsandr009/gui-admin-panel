@@ -127,6 +127,13 @@ QPushButton#button_fill {
 QPushButton#button_fill:hover {
     background-color: #971841;
 }
+QPushButton#button_default {
+    padding: 10px;
+    opacity: .8;
+}
+QPushButton#button_default:hover {
+    opacity: 1;
+}
 
 
 QWidget#item_window {
@@ -151,7 +158,55 @@ QLineEdit#inputs_line_edit_area {
     border-bottom: 1px solid #E1E1E1;
     padding: 0 4px;
 }
+QLable#inputs_text_edit_value {}
 QFrame#inputs_text_edit {}
 QTextEdit#inputs_text_edit_area {
     background-color: transparent;
+}
+QWidget#inputs_window {
+    background-color: #1D1D1D;
+}
+QTextEdit#inputs_window_text_edit {
+    background-color: transparent;
+    border-radius: 8px;
+    border: 1px solid #971841;
+    padding: 4px;
+}
+QWidget#inputs_window_buttons {}
+QWidget#inputs_color_edit {}
+QPushButton#inputs_color_edit_button {
+    padding: 10px;
+}
+QFrame#inputs_window_color_edit_container {
+    background-color: #303030;
+    border-radius: 8px;
+}
+QFrame#inputs_window_color_edit_picker {}
+QLabel#inputs_window_color_result {
+    border-bottom: 1px solid #E1E1E1;
+    padding: 0 4px;
+}
+QSlider#inputs_window_color_slider_1::groove:horizontal {
+    background:qlineargradient(x1:0, y1:0, x2:1, y2:0, stop:0 #000 , stop:1 #fff,);
+    height: 10px;
+}
+QSlider#inputs_window_color_slider_1::handle:horizontal {
+    background-color: #ffffff;
+    width: 8px;
+    margin: -6px 0;
+    border-radius: 8px;
+}
+QSlider#inputs_window_color_slider_2::groove:horizontal {
+    height: 10px;
+    border-radius: 8px;
+}
+QSlider#inputs_window_color_slider_2::handle:hroizontal {
+    background-color: #ffffff;
+    width: 8px;
+    margin: -6px 0;
+    border-radius: 8px;
+}
+QFrame#inputs_window_urls_container {
+    background-color: #303030;
+    border-radius: 8px;
 }
