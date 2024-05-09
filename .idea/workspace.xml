@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3297610d-374c-44ce-9cd6-7222c4e79c7a" name="Changes" comment="" />
+    <list default="true" id="3297610d-374c-44ce-9cd6-7222c4e79c7a" name="Changes" comment="chore: add a picture color_edit window.py">
+      <change afterPath="$PROJECT_DIR$/components/ui/inputs/color_edit/color_edit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/color_picker/target.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GUIJsonAdmin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GUIJsonAdmin.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/buttons/button.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/buttons/button.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/inputs/color_edit/window/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/color_edit/window/window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/inputs/text_edit/text_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/text_edit/text_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/inputs/text_edit/window/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/text_edit/window/window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +31,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Olecsandr009"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Olecsandr009/gui-admin-panel.git",
+    "accountId": "82eafaa9-9304-4891-be9b-89733a74a643"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;760000ff&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2eu57jbqi8MTUuIL4k5pH5c4Xvp" />
@@ -33,12 +57,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Python.main.executor": "Run",
     "Python.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/Python/GUIJsonAdmin",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/kirko/PycharmProjects/gui-admin-panel/.venv/Scripts",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -105,7 +132,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-5a2391486177-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13763.11" />
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -118,7 +145,60 @@
       <option name="presentableId" value="Default" />
       <updated>1712741458063</updated>
     </task>
+    <task id="LOCAL-00001" summary="feat: create UI button_default.py">
+      <option name="closed" value="true" />
+      <created>1715255006218</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715255006218</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: create UI urls_edit.py and urls list edit window.py">
+      <option name="closed" value="true" />
+      <created>1715255237376</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715255237377</updated>
+    </task>
+    <task id="LOCAL-00003" summary="chore: update .gitignore">
+      <option name="closed" value="true" />
+      <created>1715260992351</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715260992351</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore: update .gitignore">
+      <option name="closed" value="true" />
+      <created>1715261022628</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261022628</updated>
+    </task>
+    <task id="LOCAL-00005" summary="chore: add a picture color_edit window.py">
+      <option name="closed" value="true" />
+      <created>1715261397968</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261397968</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: create UI button_default.py" />
+    <MESSAGE value="feat: create UI urls_edit.py and urls list edit window.py" />
+    <MESSAGE value="chore: update .gitignore" />
+    <MESSAGE value="chore: add a picture color_edit window.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add a picture color_edit window.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
