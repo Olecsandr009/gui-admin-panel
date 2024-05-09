@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QFrame, QPushButton, QStyleOption, QStyle, QWidget, QVBoxLayout
 from PyQt6.QtGui import QFont, QPainter, QPaintEvent, QCursor
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, pyqtSlot
 
 from enum import Enum
 
@@ -38,6 +38,10 @@ class Button(QFrame):
     # Set the margin values
     def setContentMargins(self, left: int, top: int, right: int, bottom: int):
         self.button_layout.setContentsMargins(left, top, right, bottom)
+
+    @pyqtSlot()
+    def clicked(self, slot):
+        if self.button: self.button.clicked.connect(slot)
 
     # Set the button layout
     def setButtonLayout(self, text: str, style: ButtonStyle):
