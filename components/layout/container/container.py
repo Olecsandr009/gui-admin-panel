@@ -12,7 +12,7 @@ class Container(QWidget, LayoutInterface):
     def __init__(self):
         super().__init__()
 
-        self.layout = None
+        self.layout: Layout = None
 
     # Add layout
     def addLayout(self, direction: Layout.Direction):

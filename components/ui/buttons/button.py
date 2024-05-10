@@ -29,7 +29,7 @@ class Button(QFrame):
         # Default alignment value
         self.alignment = Qt.AlignmentFlag.AlignLeading
         # Default button var
-        self.button = None
+        self.button: QPushButton = None
 
         self.__setupLayout()
 
