@@ -18,6 +18,9 @@ class ButtonStyle(Enum):
 
 
 class Button(QFrame):
+
+    ButtonStyle = ButtonStyle
+
     def __init__(self, parent: Optional[QWidget] = None) -> None:
         super(Button, self).__init__(parent)
 
@@ -78,5 +81,5 @@ class Button(QFrame):
     # Setup the layout
     def __setupLayout(self):
         self.button_layout = QVBoxLayout(self)
-        self.button_layout.setContentsMargins(self.margin[0], self.margin[1], self.margin[2], self.margin[3])
+        self.button_layout.setContentsMargins(*self.margin)
         self.button_layout.setAlignment(self.alignment)
