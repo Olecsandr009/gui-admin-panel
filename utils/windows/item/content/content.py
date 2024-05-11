@@ -4,18 +4,16 @@ from PyQt6.QtCore import Qt
 
 from typing import Optional
 
-from utils.windows.item.content.tools.tools import Tools
-from utils.windows.item.content.data.data import Data
-from utils.windows.item.content.apply.apply import Apply
+from utils.windows.item.content import Data, Apply
 from utils.scroll.scroll import Scroll
-from components.ui.buttons.button import ButtonStyle
+from components.ui import Button
+from components.layout import Tools, Container
 
 
-
-class Content(QWidget):
+class Content(Container):
     # Initialize content widget
     def __init__(self, parent: Optional[QWidget]) -> None:
-        super(Content, self).__init__(parent)
+        super(Content, self).__init__()
         
         # Set the object name
         self.setObjectName("item_content")
@@ -27,8 +25,6 @@ class Content(QWidget):
         self.__configureTools()
         self.__configureData()
         self.__configureApply()
-        
-        self.setLayout(self.content_layout)
         
     # Set the data content
     def setContent(self, content: QWidget):
@@ -44,26 +40,26 @@ class Content(QWidget):
         
     # Setup content layout
     def __contentLayout(self):
-        self.content_layout = QVBoxLayout(self)
-        self.content_layout.setContentsMargins(0, 0, 0, 0)
-        
+        self.addLayout(Container.Direction.TopToBottom)
+
     # Configure content tools
     def __configureTools(self):
-        content_tools = Tools(self.parent, self)        
-        self.content_layout.addWidget(content_tools)
+        content_tools = Tools(self.parent)
+
+        self.layout.addWidget(content_tools)
     
     def __configureData(self):
         self.content_data = Data(self)
         self.content_data.setContentsMargins(0, 16, 32, 16)
         
-        self.content_layout.addWidget(self.content_data)
+        self.layout.addWidget(self.content_data)
     
     def __configureApply(self):
         content_apply = Apply(self)
         content_apply.setAlignment(Qt.AlignmentFlag.AlignRight)
         content_apply.setContentsMargins(0, 0, 32, 32)
         
-        content_apply.setButtonLayout("Відміна", ButtonStyle.BORDER)
-        content_apply.setButtonLayout("Зберегти", ButtonStyle.FILL)
+        content_apply.setButtonLayout("Відміна", Button.ButtonStyle.BORDER)
+        content_apply.setButtonLayout("Зберегти", Button.ButtonStyle.FILL)
         
-        self.content_layout.addWidget(content_apply)
+        self.layout.addWidget(content_apply)
