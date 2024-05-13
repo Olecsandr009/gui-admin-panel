@@ -2,9 +2,29 @@ from PyQt6.QtWidgets import QWidget, QStyleOption, QStyle, QFrame, QVBoxLayout, 
 from PyQt6.QtGui import QMouseEvent, QPainter, QPaintEvent
 from PyQt6.QtCore import Qt
 
-from typing import Optional
+from typing import Optional, List
+from abc import ABC, abstractmethod
 
 from components.ui.inputs.text_edit.window.window import Window
+
+
+class TextEditInterface(ABC):
+    # Add the observer
+    @abstractmethod
+    def attach(self, observer: "Observer") -> None:
+        pass
+
+    # Remove the observer
+    @abstractmethod
+    def detach(self, observer: "Observer") -> None:
+        pass
+
+
+class Observer(ABC):
+    # Receive update from text edit
+    @abstractmethod
+    def update(self, text: TextEditInterface) -> None:
+        pass
 
 
 class TextEdit(QFrame):
@@ -65,11 +85,9 @@ class TextEdit(QFrame):
     def setText(self, text: str) -> None:
         self.text_value = QLabel(f"{text[:50]}...", self)
         self.text_value.setObjectName("inputs_text_edit_value")
-
         self.text_layout.addWidget(self.text_value)
 
     # Setup the text edit layout
     def __textEditLayout(self):
         self.text_layout = QVBoxLayout(self)
         self.text_layout.setContentsMargins(self.margin[0], self.margin[1], self.margin[2], self.margin[3])
-        self.text_layout.setAlignment(self.alignment)

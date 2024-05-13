@@ -41,6 +41,10 @@ class LineEdit(QFrame):
     # Set the placeholder text
     def setPlaceholderText(self, text:str):
         self.line_edit.setPlaceholderText(text)
+
+    # Set the text value
+    def setText(self, text: str):
+        self.line_edit.setText(text)
     
     # Set the fixed height value
     def setFixedHeight(self, h: int) -> None:
