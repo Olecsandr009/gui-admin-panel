@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3297610d-374c-44ce-9cd6-7222c4e79c7a" name="Changes" comment="chore: add a picture color_edit window.py">
-      <change afterPath="$PROJECT_DIR$/components/ui/inputs/color_edit/color_edit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/color_picker/target.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GUIJsonAdmin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GUIJsonAdmin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="3297610d-374c-44ce-9cd6-7222c4e79c7a" name="Changes" comment="feat(utils/window/item/media): create media.py">
+      <change afterPath="$PROJECT_DIR$/components/ui/text/text.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testWidget/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo/structure.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo/sturcture.drawio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/todo/Зауваження 2024-05-09 231021.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/buttons/button.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/buttons/button.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/inputs/color_edit/window/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/color_edit/window/window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/inputs/line_edit/line_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/line_edit/line_edit.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ui/inputs/text_edit/text_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/text_edit/text_edit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/inputs/text_edit/window/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/inputs/text_edit/window/window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/scroll/scroll.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/scroll/scroll.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/windows/item/content/content.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/windows/item/content/content.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/windows/item/content/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/windows/item/content/data/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/windows/item/content/tools/tools.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/windows/item/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/windows/item/window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,18 +34,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Olecsandr009"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Olecsandr009&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Olecsandr009/gui-admin-panel.git",
-    "accountId": "82eafaa9-9304-4891-be9b-89733a74a643"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Olecsandr009/gui-admin-panel.git&quot;,
+    &quot;accountId&quot;: &quot;82eafaa9-9304-4891-be9b-89733a74a643&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;760000ff&quot;,
   &quot;associatedIndex&quot;: 5
@@ -55,20 +58,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Python.main.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/kirko/PycharmProjects/gui-admin-panel/.venv/Scripts",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kirko/PycharmProjects/gui-admin-panel/.venv/Scripts&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Python\GUIJsonAdmin\utils" />
@@ -185,7 +188,183 @@
       <option name="project" value="LOCAL" />
       <updated>1715261397968</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix: error when click on the button">
+      <option name="closed" value="true" />
+      <created>1715261799126</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261799126</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update: color_edit.py">
+      <option name="closed" value="true" />
+      <created>1715261824032</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261824032</updated>
+    </task>
+    <task id="LOCAL-00008" summary="update: text_edit.py">
+      <option name="closed" value="true" />
+      <created>1715261841070</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261841070</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chore: add a picture color_edit window.py">
+      <option name="closed" value="true" />
+      <created>1715261971738</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261971738</updated>
+    </task>
+    <task id="LOCAL-00010" summary="update: styles.css">
+      <option name="closed" value="true" />
+      <created>1715261985033</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1715261985033</updated>
+    </task>
+    <task id="LOCAL-00011" summary="update: text_edit window">
+      <option name="closed" value="true" />
+      <created>1715262009810</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1715262009810</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat(.components/layout/layout/Layout.py): custom layout widget">
+      <option name="closed" value="true" />
+      <created>1715357217220</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1715357217220</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update: add layout interface and implements methods">
+      <option name="closed" value="true" />
+      <created>1715369947230</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715369947230</updated>
+    </task>
+    <task id="LOCAL-00014" summary="update: add new abstract methods">
+      <option name="closed" value="true" />
+      <created>1715376382342</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1715376382342</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat(.components/layout/container/container.py): custom container layout">
+      <option name="closed" value="true" />
+      <created>1715376522434</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1715376522434</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat(.components/layout/frame/frame.py): custom frame layout">
+      <option name="closed" value="true" />
+      <created>1715377480576</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715377480576</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update: add types">
+      <option name="closed" value="true" />
+      <created>1715384242663</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1715384242663</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat(.components/layout/tools): custom tools layout">
+      <option name="closed" value="true" />
+      <created>1715384298874</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1715384298874</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: import settings in components folder">
+      <option name="closed" value="true" />
+      <created>1715389202318</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1715389202318</updated>
+    </task>
+    <task id="LOCAL-00020" summary="update: code refactoring">
+      <option name="closed" value="true" />
+      <created>1715392147311</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1715392147311</updated>
+    </task>
+    <task id="LOCAL-00021" summary="update: code refactoring">
+      <option name="closed" value="true" />
+      <created>1715392280416</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1715392280416</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat: import settings">
+      <option name="closed" value="true" />
+      <created>1715392339125</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1715392339125</updated>
+    </task>
+    <task id="LOCAL-00023" summary="feat: add a button style enum to the Button class">
+      <option name="closed" value="true" />
+      <created>1715392569140</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1715392569140</updated>
+    </task>
+    <task id="LOCAL-00024" summary="update: tool button settings">
+      <option name="closed" value="true" />
+      <created>1715392938142</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1715392938142</updated>
+    </task>
+    <task id="LOCAL-00025" summary="update: __init__.py files">
+      <option name="closed" value="true" />
+      <created>1715633200094</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1715633200094</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: create custom item">
+      <option name="closed" value="true" />
+      <created>1715633254166</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1715633254166</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat(utils/window/item/media): create media.py">
+      <option name="closed" value="true" />
+      <created>1715633300404</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715633300404</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -197,8 +376,28 @@
     <MESSAGE value="feat: create UI button_default.py" />
     <MESSAGE value="feat: create UI urls_edit.py and urls list edit window.py" />
     <MESSAGE value="chore: update .gitignore" />
+    <MESSAGE value="fix: error when click on the button" />
+    <MESSAGE value="update: color_edit.py" />
+    <MESSAGE value="update: text_edit.py" />
     <MESSAGE value="chore: add a picture color_edit window.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add a picture color_edit window.py" />
+    <MESSAGE value="update: styles.css" />
+    <MESSAGE value="update: text_edit window" />
+    <MESSAGE value="feat(.components/layout/layout/Layout.py): custom layout widget" />
+    <MESSAGE value="update: add layout interface and implements methods" />
+    <MESSAGE value="update: add new abstract methods" />
+    <MESSAGE value="feat(.components/layout/container/container.py): custom container layout" />
+    <MESSAGE value="feat(.components/layout/frame/frame.py): custom frame layout" />
+    <MESSAGE value="update: add types" />
+    <MESSAGE value="feat(.components/layout/tools): custom tools layout" />
+    <MESSAGE value="feat: import settings in components folder" />
+    <MESSAGE value="update: code refactoring" />
+    <MESSAGE value="feat: import settings" />
+    <MESSAGE value="feat: add a button style enum to the Button class" />
+    <MESSAGE value="update: tool button settings" />
+    <MESSAGE value="update: __init__.py files" />
+    <MESSAGE value="feat: create custom item" />
+    <MESSAGE value="feat(utils/window/item/media): create media.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(utils/window/item/media): create media.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -207,6 +406,11 @@
           <url>file://$PROJECT_DIR$/components/sidebar/sidebar.py</url>
           <line>27</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/windows/item/content/content.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
