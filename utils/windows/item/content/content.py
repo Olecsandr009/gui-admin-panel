@@ -9,17 +9,22 @@ from utils.scroll.scroll import Scroll
 from components.ui import Button
 from components.layout import Tools, Container
 
+from components.ui import Inputs
+
 
 class Content(Container):
     # Initialize content widget
-    def __init__(self, parent: Optional[QWidget]) -> None:
+    def __init__(self, scheme, data, parent: Optional[QWidget] = None) -> None:
         super(Content, self).__init__()
         
         # Set the object name
         self.setObjectName("item_content")
-        
+
         # Set the parent value
         self.parent = parent
+
+        self.scheme = scheme
+        self.data = data
         
         self.__contentLayout()
         self.__configureTools()
@@ -27,9 +32,9 @@ class Content(Container):
         self.__configureApply()
         
     # Set the data content
-    def setContent(self, content: QWidget):
-        self.content_data.setContent(content)
-        
+    # def setContent(self, content: QWidget):
+    #     self.content_data.setContent(content)
+
     # Setup the paint event
     def paintEvent(self, a0: QPaintEvent | None) -> None:
         o = QStyleOption()
@@ -51,6 +56,8 @@ class Content(Container):
     def __configureData(self):
         self.content_data = Data(self)
         self.content_data.setContentsMargins(0, 16, 32, 16)
+
+        self.content_data.setInputsScheme(self.scheme, self.data)
         
         self.layout.addWidget(self.content_data)
     
